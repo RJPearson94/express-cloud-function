@@ -1,1 +1,10 @@
 node_modules
+dist
+yarn-error.log
+
+.terraform
+.terragrunt-cache
+*.tfplan
+*.tfstate*
+.terraform.lock.hcl
+terraform.tfvars

@@ -1,15 +1,25 @@
-const { ValidationError } = require("express-json-validator-middleware");
+import { HttpError } from "http-errors";
 import { ErrorRequestHandler } from "express";
 
+const isHttpError = (error: Error | HttpError): error is HttpError =>
+  "statusCode" in error;
+
 export const error: ErrorRequestHandler = (error, req, res, next) => {
-  if (error instanceof ValidationError) {
-    res.status(400).send({
-      message: "Invalid request payload",
-      details: error.validationErrors,
-    });
-  } else if (error) {
+  if (error) {
     req.log.error(error);
-    res.status(500).send({ message: "Internal Server Error" });
+
+    let statusCode = 500;
+    let body: any = {
+      message: "An error occurred",
+    };
+    if (isHttpError(error)) {
+      statusCode = error.statusCode;
+      body = {
+        message: error.message,
+        ...(error.details ? { details: error.details } : {}),
+      };
+    }
+    res.status(statusCode).json(body);
   }
   next();
 };

@@ -1,6 +1,6 @@
-import { AllowedSchema } from "express-json-validator-middleware";
+import { Schema } from "ajv";
 
-export const request: AllowedSchema = {
+export const request: Schema = {
   type: "object",
   properties: {
     sessionInfo: {

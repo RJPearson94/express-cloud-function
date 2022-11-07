@@ -1,22 +1,34 @@
 import express from "express";
-import { Validator } from "express-json-validator-middleware";
 import pinoLogger from "pino-http";
 
 import { cxPostRequest, getRequest, unsupportedMethod } from "./handlers";
 import { error as errorMiddleware } from "./middleware";
-import { request } from "./schema";
+import { request as requestSchema } from "./schema";
 import { instrumentTracing } from "./utils";
+import { validator } from "./middleware/validator";
 
 instrumentTracing();
 
 const app = express();
-const { validate } = new Validator({});
 
-app.use(pinoLogger());
-app.use(errorMiddleware);
+app.disable("x-powered-by");
+app.disable("etag");
 
-app.post("/*", validate({ body: request }), cxPostRequest);
+app.use(
+  pinoLogger({
+    level: process.env.LOG_LEVEL || "error",
+  })
+);
+app.use(
+  express.json({
+    limit: "1024mb",
+  })
+);
+
+app.post("/*", validator({ schema: requestSchema }), cxPostRequest);
 app.get("/*", getRequest);
 app.all("/*", unsupportedMethod);
 
-exports.handler = app;
+app.use(errorMiddleware);
+
+export const handler = app;
