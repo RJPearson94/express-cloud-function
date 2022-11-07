@@ -18,7 +18,7 @@ describe("Express Cloud function", () => {
         .send({
           sessionInfo: {
             parameters: {
-              hello: "world",
+              name: "hello world",
             },
           },
         });
@@ -28,7 +28,7 @@ describe("Express Cloud function", () => {
       expect(response.status).toEqual(200);
     });
 
-    test("And the body contains a name session parameter", () => {
+    test("And the body to contain a name session parameter", () => {
       expect(response.body).toEqual({
         sessionInfo: {
           parameters: {
@@ -50,7 +50,7 @@ describe("Express Cloud function", () => {
       expect(response.status).toEqual(200);
     });
 
-    test("And the body to be an empty object", () => {
+    test("And the body is an empty object", () => {
       expect(response.body).toEqual({});
     });
   });
@@ -68,7 +68,7 @@ describe("Express Cloud function", () => {
       expect(response.status).toEqual(400);
     });
 
-    test("And the body contains the validation errors", () => {
+    test("And the body to contain a message and validation error details", () => {
       expect(response.body).toEqual({
         message: "Request failed validation",
         details: [
@@ -99,7 +99,7 @@ describe("Express Cloud function", () => {
       expect(response.status).toEqual(405);
     });
 
-    test("And the body contains the message, method not allowed", () => {
+    test("And the body to contain the message, method not allowed", () => {
       expect(response.body).toEqual({
         message: "Method Not Allowed",
       });
