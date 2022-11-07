@@ -12,5 +12,5 @@
     "moduleResolution": "node",
     "noUnusedLocals": true
   },
-  "exclude": ["infrastructure/dist", "jest.config.js"]
+  "exclude": ["infrastructure/dist", "jest.config.js", "esbuild.mjs"]
 }

@@ -1,9 +1,7 @@
-const { registerInstrumentations } = require("@opentelemetry/instrumentation");
-const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
-const {
-  ExpressInstrumentation,
-} = require("@opentelemetry/instrumentation-express");
-const { NodeTracerProvider } = require("@opentelemetry/sdk-trace-node");
+import { registerInstrumentations } from "@opentelemetry/instrumentation";
+import { HttpInstrumentation } from "@opentelemetry/instrumentation-http";
+import { ExpressInstrumentation } from "@opentelemetry/instrumentation-express";
+import { NodeTracerProvider } from "@opentelemetry/sdk-trace-node";
 
 export const instrumentTracing = () => {
   const provider = new NodeTracerProvider();
