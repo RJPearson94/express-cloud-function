@@ -1,12 +1,5 @@
 import supertest from "supertest";
-
-process.env.LOG_LEVEL = "silent";
-
 import { handler } from "../src";
-
-jest.mock("../src/utils/tracing", () => ({
-  instrumentTracing: jest.fn(),
-}));
 
 describe("Express Cloud function", () => {
   describe("When I make a post request with a session parameter", () => {

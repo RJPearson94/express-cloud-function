@@ -30,6 +30,12 @@ resource "google_service_account" "function_service_account" {
   account_id = "${local.prefix}${local.name}-sa${local.suffix}"
 }
 
+resource "google_project_iam_member" "cloud_tracing_write" {
+  project = data.google_project.project.number
+  role    = "roles/cloudtrace.agent"
+  member  = "serviceAccount:${google_service_account.function_service_account.email}"
+}
+
 # Function
 
 resource "google_cloudfunctions2_function" "express_cloud_function" {
@@ -39,10 +45,6 @@ resource "google_cloudfunctions2_function" "express_cloud_function" {
   build_config {
     runtime     = "nodejs16"
     entry_point = "handler"
-
-    environment_variables = {
-      "LOG_LEVEL" = var.log_level
-    }
 
     source {
       storage_source {
@@ -57,5 +59,11 @@ resource "google_cloudfunctions2_function" "express_cloud_function" {
     timeout_seconds       = 60
     max_instance_count    = 10
     service_account_email = google_service_account.function_service_account.email
+
+    environment_variables = {
+      LOG_LEVEL = var.log_level,
+      NODE_ENV  = "production",
+      NODE_OPTIONS: "--require ./tracing-wrapper.js"
+    }
   }
 }

@@ -1,0 +1,16 @@
+{
+  "name": "@rjpearson94/tracing",
+  "description": "package.json which includes the external dependencies that are needed for tracing to function correctly",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/opentelemetry-cloud-trace-exporter": "^1.2.0",
+    "@opentelemetry/api": "^1.3.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.36.0",
+    "@opentelemetry/core": "^1.8.0",
+    "@opentelemetry/resources": "^1.8.0",
+    "@opentelemetry/sdk-trace-base": "^1.8.0",
+    "@opentelemetry/sdk-trace-node": "^1.7.0",
+    "@opentelemetry/semantic-conventions": "^1.8.0"
+  }
+}
