@@ -6,10 +6,10 @@ Before you can deploy the cloud function to GCP, you must build the cloud functi
 
 ## Requirements
 
-| Name                                                                     | Version |
-| ------------------------------------------------------------------------ | ------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 0.13 |
-| <a name="requirement_google"></a> [google](#requirement_google)          | 4.42.1  |
+| Name                                                                     | Version   |
+| ------------------------------------------------------------------------ | --------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 0.13   |
+| <a name="requirement_google"></a> [google](#requirement_google)          | >= 4.42.1 |
 
 ## Providers
 
@@ -25,11 +25,12 @@ No modules.
 
 | Name                                                                                                                                                              | Type        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [google_cloudfunctions2_function.express_cloud_function](https://registry.terraform.io/providers/hashicorp/google/4.42.1/docs/resources/cloudfunctions2_function) | resource    |
-| [google_service_account.function_service_account](https://registry.terraform.io/providers/hashicorp/google/4.42.1/docs/resources/service_account)                 | resource    |
-| [google_storage_bucket.artefact_bucket](https://registry.terraform.io/providers/hashicorp/google/4.42.1/docs/resources/storage_bucket)                            | resource    |
-| [google_storage_bucket_object.function_zip](https://registry.terraform.io/providers/hashicorp/google/4.42.1/docs/resources/storage_bucket_object)                 | resource    |
-| [google_project.project](https://registry.terraform.io/providers/hashicorp/google/4.42.1/docs/data-sources/project)                                               | data source |
+| [google_cloudfunctions2_function.express_cloud_function](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloudfunctions2_function) | resource    |
+| [google_project_iam_member.cloud_tracing_write](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member)                | resource    |
+| [google_service_account.function_service_account](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account)                 | resource    |
+| [google_storage_bucket.artefact_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket)                            | resource    |
+| [google_storage_bucket_object.function_zip](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_object)                 | resource    |
+| [google_project.project](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/project)                                               | data source |
 
 ## Inputs
 
