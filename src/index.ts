@@ -3,9 +3,8 @@ import pinoLogger from "pino-http";
 import { getPinoOptions } from "@relaycorp/pino-cloud";
 
 import { cxPostRequest, getRequest, unsupportedMethod } from "./handlers";
-import { error as errorMiddleware } from "./middleware";
+import { error as errorMiddleware, validator } from "./middleware";
 import { request as requestSchema } from "./schema";
-import { validator } from "./middleware/validator";
 
 const app = express();
 

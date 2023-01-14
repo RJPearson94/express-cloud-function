@@ -6,6 +6,12 @@ locals {
   zip_location = "${path.module}/dist/${local.zip_name}"
 }
 
+# Enabled Services
+
+resource "google_project_service" "cloud_trace" {
+  service = "cloudtrace.googleapis.com"
+}
+
 # Function/ Artefact Storage
 
 resource "google_storage_bucket" "artefact_bucket" {

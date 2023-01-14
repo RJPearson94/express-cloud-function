@@ -25,3 +25,11 @@ The tests are written using [jest](https://jestjs.io/) and [supertest](https://g
 ```sh
 yarn test
 ```
+
+## Tracing
+
+The Cloud Function utilises [OpenTelemetry](https://opentelemetry.io/) to provide auto-instrumentation of the code to analyze application performance. The telemetry data is exported to [Cloud Trace](https://cloud.google.com/trace) to be visualised and interrogated, to allow this capability the Cloud Trace API needs to be enabled on the account. This service is enabled as part of the Terraform infrastructure.
+
+The `cloudtrace.agent` role is added to the Cloud Function service account to allow the exporter to push spans to Cloud Tracing.
+
+The Cloud Function node.js runtime execute code before requiring/ executing custom code, this affected auto-instrumentation when the config was added to the express app. Therefore the tracing config was moved into a script ([tracing-wrapper](./utils/tracing-wrapper.ts)) which is execute before the function script, this code can be found in the [utils](./utils/) folder. To ensure the tracing-wrapper code is executed first the `NODE_OPTIONS` environment variable is set to `--require ./tracing-wrapper.js`. The esbuild config as been updated to bundle both the application code and tracing-wrapper into the zip uploaded to GCS/ Cloud Functions. Due to issues during minification/ tree-shaking, the dependencies for the tracing-wrapper are not bundled instead the package.json and yarn.lock in the utils folder are uploaded to GCP for Google to download the dependencies as part of the build process.

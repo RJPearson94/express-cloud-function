@@ -11,8 +11,7 @@ const esbuildZipPlugin = (opts) => {
       build?.onEnd(() => {
         const zipFile = new ZipFile();
 
-        const { outfile, outdir, entryPoints, sourcemap } =
-          build.initialOptions;
+        const { outdir, entryPoints, sourcemap } = build.initialOptions;
 
         if (outdir) {
           entryPoints.forEach((entryPoint) => {

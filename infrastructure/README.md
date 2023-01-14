@@ -27,6 +27,7 @@ No modules.
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | [google_cloudfunctions2_function.express_cloud_function](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloudfunctions2_function) | resource    |
 | [google_project_iam_member.cloud_tracing_write](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member)                | resource    |
+| [google_project_service.cloud_trace](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service)                              | resource    |
 | [google_service_account.function_service_account](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account)                 | resource    |
 | [google_storage_bucket.artefact_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket)                            | resource    |
 | [google_storage_bucket_object.function_zip](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_object)                 | resource    |
